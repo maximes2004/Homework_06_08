@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- <script src="script.js" defer></script> -->
+    <style>
+      /* Стили для оформления статей и тегов */
+      .article {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .article img {
+        max-width: 100px;
+        height: auto;
+      }
+      .tags button {
+        margin: 5px;
+      }
+      .active-tag {
+        background-color: #007bff;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Кнопки для выбора тегов -->
+      <div class="tags">
+        <button
+          v-for="tag in tags"
+          :key="tag"
+          @click="selectTag(tag)"
+          :class="{'active-tag': selectedTag === tag}"
+        >
+          {{ tag }}
+        </button>
+      </div>
+
+      <!-- Подробное описание выбранной статьи -->
+      <div class="article" v-if="selectedArticle">
+        <h2>{{ selectedArticle.title }}</h2>
+        <p>{{ selectedArticle.content }}</p>
+      </div>
+
+      <!-- Список статей, отфильтрованных по выбранному тегу -->
+      <div class="articles">
+        <div
+          v-for="article in filteredArticles"
+          :key="article.id"
+          class="article"
+        >
+          <img :src="article.image" @click="selectArticle(article)" />
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.excerpt }}</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Инициализация нового Vue экземпляра
+      new Vue({
+        el: "#app", // Привязываем Vue к элементу с id "app"
+        data: {
+          // Массив объектов, представляющих статьи
+          articles: [
+            {
+              id: 1,
+              title: "Статья 1",
+              content: "Подробное описание статьи 1",
+              excerpt: "Краткое описание статьи 1",
+              image: "https://via.placeholder.com/100",
+              tags: ["Политика", "Экономика"],
+            },
+            {
+              id: 2,
+              title: "Статья 2",
+              content: "Подробное описание статьи 2",
+              excerpt: "Краткое описание статьи 2",
+              image: "https://via.placeholder.com/100",
+              tags: ["Спорт", "Технологии"],
+            },
+            {
+              id: 3,
+              title: "Статья 3",
+              content: "Подробное описание статьи 3",
+              excerpt: "Краткое описание статьи 3",
+              image: "https://via.placeholder.com/100",
+              tags: ["Здоровье", "Технологии"],
+            },
+            {
+              id: 4,
+              title: "Статья 4",
+              content: "Подробное описание статьи 4",
+              excerpt: "Краткое описание статьи 4",
+              image: "https://via.placeholder.com/100",
+              tags: ["Политика", "Здоровье"],
+            },
+            {
+              id: 5,
+              title: "Статья 5",
+              content: "Подробное описание статьи 5",
+              excerpt: "Краткое описание статьи 5",
+              image: "https://via.placeholder.com/100",
+              tags: ["Экономика", "Спорт"],
+            },
+          ],
+          // Массив тегов
+          tags: ["Политика", "Экономика", "Спорт", "Технологии", "Здоровье"],
+          // Выбранный тег
+          selectedTag: null,
+          // Выбранная статья
+          selectedArticle: null,
+        },
+        computed: {
+          // Компьютед-свойство для фильтрации статей по выбранному тегу
+          filteredArticles() {
+            if (this.selectedTag) {
+              // Фильтруем статьи, которые содержат выбранный тег
+              return this.articles.filter((article) =>
+                article.tags.includes(this.selectedTag)
+              );
+            }
+            // Если тег не выбран, возвращаем все статьи
+            return this.articles;
+          },
+        },
+        methods: {
+          // Метод для выбора тега
+          selectTag(tag) {
+            this.selectedTag = tag;
+            // Сбрасываем выбранную статью при изменении тега
+            this.selectedArticle = null;
+          },
+          // Метод для выбора статьи
+          selectArticle(article) {
+            this.selectedArticle = article;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

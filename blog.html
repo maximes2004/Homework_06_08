@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <div class="logo_container">
+          <img src="img/logo.svg" alt="" />
+        </div>
+        <div class="main_menu_container">
+          <div class="main_menu_item">
+            <a href="index.html">Домой</a>
+          </div>
+          <div class="main_menu_item">Проект</div>
+          <div class="main_menu_item">
+            <a href="blog.html">Блог</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="blog_wrapper_wide">
+        <section class="blog_banner">
+          <div>
+            <div>
+              <div class="blog_banner_title">Статьи & Новости</div>
+              <div class="blog_banner_desc">Домой / Блог</div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="blog_wrapper">
+        <section class="blog_last_post">
+          <div class="blog_last_post_title">
+            <h2>Последний пост</h2>
+          </div>
+          <div class="blog_last_post_content">
+            <div class="blog_last_post_img">
+              <img src="img/banner_last_post.png" alt="" />
+            </div>
+            <div class="blog_last_post_text">
+              <div>
+                <h4>Low Cost Latest Invented Interior Designing Ideas</h4>
+                <p>
+                  С того времени этот, похожий на латинский, текст стал
+                  стандартом в печатной промышленности для примеров шрифтов и
+                  текстов. Перед появлением электронных издательств дизайнеры
+                  импровизировали в работе над макетами, изображая текст при
+                  помощи волнистых линий. С появлением самоклеющихся наклеек с
+                  напечатанным текстом «Lorem ipsum» появился более реалистичный
+                  способ обозначения расположения текста на странице.
+                </p>
+              </div>
+              <div class="blog_last_post_date">
+                <div>
+                  <p>26 December,2022</p>
+                </div>
+                <div>
+                  <img src="img/news_arrow_dark.svg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="blog_wrapper">
+        <section class="blog_news">
+          <h2>Статьи & Новости</h2>
+          <div id="app">
+            <div v-for="news in newsList" :key="news.id">
+              <div :class="'article_' + news.id" class="article">
+                <div class="article_img">
+                  <div class="article_category">{{ news.category }}</div>
+                </div>
+                <div class="article_img_content">
+                  <div class="article_img_content_main">
+                    <div class="article_img_title">
+                      <h3>{{ news.title }}</h3>
+                    </div>
+                    <div class="article_img_date">{{ news.date }}</div>
+                  </div>
+                  <div class="article_img_content_arrow">
+                    <img
+                      :src="news.id === 2 ? 'img/news_arrow_light.svg' :
+                    'img/news_arrow_dark.svg'"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pages">
+            <div class="page_1">
+              <img src="img/num_1.png" alt="" />
+            </div>
+            <div class="page_2">
+              <img src="img/num_2.png" alt="" />
+            </div>
+            <div class="page_3">
+              <img src="img/num_3.png" alt="" />
+            </div>
+            <div class="page_arrow">
+              <img src="img/arrow_light_round.svg" alt="" />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="wrapper">
+        <div class="left_footer">
+          <div class="footer_logo_container">
+            <img src="img/logo.svg" alt="" />
+          </div>
+          <div class="footer_social_container">
+            <div class="twitter">
+              <img src="img/twitter.svg" alt="" />
+            </div>
+            <div class="instagram">
+              <img src="img/instagram.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="middle_footer">
+          <div class="middle_footer_header">Страницы</div>
+          <div class="middle_footer_content">
+            <div>Домой</div>
+            <div>Проект</div>
+            <div>Блог</div>
+          </div>
+        </div>
+        <div class="right_footer">
+          <div class="right_footer_header">Контакты</div>
+          <div class="right_footer_content">
+            <div class="adress">
+              55 East Birchwood Ave. Brooklyn, New York 11201
+            </div>
+            <div class="emeil">contact@interno.com</div>
+            <div class="tel">(123) 456 - 7890</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
